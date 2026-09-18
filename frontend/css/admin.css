@@ -1,0 +1,43 @@
+body {
+    font-family: Poppins, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.status {
+    padding: 5px 9px;
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+}
+
+.status.pending { background: orange; }
+.status.preparing { background: blue; }
+.status.out { background: purple; }
+.status.delivered { background: green; }
+
+button {
+    padding: 6px 10px;
+    background: crimson;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}

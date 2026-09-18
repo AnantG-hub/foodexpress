@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Payment - FoodieExpress</title>
+<style>
+body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+.payment-box { background: #fff; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
+input { width: 100%; padding: 10px; margin: 10px 0; }
+button { padding: 10px; width: 100%; background: green; color: white; border: none; border-radius: 5px; cursor: pointer; }
+button:hover { opacity: 0.9; }
+</style>
+</head>
+<body>
+
+<h1>💳 Payment</h1>
+
+<div class="payment-box">
+    <p><b>Order ID:</b> <span id="orderId"></span></p>
+    <p><b>Total:</b> $<span id="total"></span></p>
+
+    <form id="paymentForm">
+        <input type="text" id="cardNumber" placeholder="Card Number" required />
+        <input type="text" id="expiry" placeholder="MM/YY" required />
+        <input type="text" id="cvv" placeholder="CVV" required />
+        <button type="submit">Pay Now</button>
+    </form>
+
+    <p id="msg"></p>
+</div>
+
+<script>
+const order = JSON.parse(localStorage.getItem("currentPayment") || "{}");
+document.getElementById("orderId").innerText = order.orderId;
+document.getElementById("total").innerText = (order.total || 0).toFixed(2);
+
+
+document.getElementById("paymentForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const msg = document.getElementById("msg");
+    
+    // Collect card details (dummy)
+    const cardNumber = document.getElementById("cardNumber").value;
+    const expiry = document.getElementById("expiry").value;
+    const cvv = document.getElementById("cvv").value;
+
+    try {
+        // Call backend payment API
+       const res = await fetch("http://localhost:5006/api/payment/pay", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        orderId: order.orderId,
+        paymentMethod: "Card"
+    })
+});
+
+        const data = await res.json();
+
+        if(res.ok){
+            msg.style.color = "green";
+            msg.innerText = "Payment Successful!";
+            
+            // Update user localStorage orders
+            let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+            const index = orders.findIndex(o => o.orderId === order.orderId);
+            if(index !== -1) {
+                orders[index].payment = "Paid";
+                localStorage.setItem("orders", JSON.stringify(orders));
+            }
+
+            setTimeout(() => {
+                localStorage.removeItem("currentPayment");
+                window.location.href = "orders.html";
+            }, 1500);
+
+        } else {
+            msg.style.color = "red";
+            msg.innerText = data.message || "Payment failed!";
+        }
+
+    } catch(err){
+        msg.style.color = "red";
+        msg.innerText = "Server error!";
+    }
+});
+</script>
+</body>
+</html>

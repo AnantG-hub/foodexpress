@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodieExpress | Admin Login</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff5722, #ff8a50);
+}
+
+/* Login Card */
+.login-box {
+  background: #ffffff;
+  width: 320px;
+  padding: 35px 30px;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Brand */
+.brand {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ff5722;
+  margin-bottom: 5px;
+}
+
+.brand span {
+  color: #333;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* Input */
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #ff5722;
+  box-shadow: 0 0 0 2px rgba(255,87,34,0.15);
+}
+
+/* Button */
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  background: #e64a19;
+  transform: translateY(-1px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <div class="brand">🍔 Foodie<span>Express</span></div>
+  <div class="subtitle">Admin Panel Login</div>
+
+  <input type="password" id="pass" placeholder="Enter Admin Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<script>
+function login(){
+  if(document.getElementById("pass").value === "12345"){
+    sessionStorage.setItem("admin", "true");
+    window.location.href = "admin.html";
+  } else {
+    alert("❌ Wrong Password");
+  }
+}
+</script>
+
+</body>
+</html>
+

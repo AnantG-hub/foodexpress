@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodieExpress – Feedback</title>
+
+<style>
+    * {
+        margin: 0; padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #ff7043, #ffab40);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 500px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        animation: fadeIn 0.7s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 26px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #444;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #ff7043;
+        box-shadow: 0 0 6px rgba(255,140,90,0.5);
+    }
+
+    /* ⭐ Rating Stars */
+    .stars {
+        display: flex;
+        gap: 10px;
+        font-size: 32px;
+        cursor: pointer;
+        color: #ccc;
+    }
+
+    .stars i:hover,
+    .stars i.active {
+        color: #ff9800;
+        transform: scale(1.2);
+    }
+
+    /* Coupon Card */
+    .coupon-card {
+        background: #fff3cd;
+        border-left: 6px solid #ff9800;
+        padding: 15px;
+        border-radius: 12px;
+        font-size: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+        background: #ff7043;
+        border: none;
+        color: #fff;
+        border-radius: 14px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #e65b2a;
+        transform: scale(1.03);
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Feedback Form</h2>
+
+    <form id="feedbackForm">
+    <h2>Feedback Form</h2>
+
+    <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+    </div>
+
+    <div class="form-group">
+        <label>Rating</label>
+        <div class="stars" id="ratingStars">
+            <i data-value="1">★</i>
+            <i data-value="2">★</i>
+            <i data-value="3">★</i>
+            <i data-value="4">★</i>
+            <i data-value="5">★</i>
+        </div>
+        <input type="hidden" name="rating" id="ratingValue">
+    </div>
+
+    <div class="coupon-card">
+        🎟 <strong>Available Coupon:</strong><br>
+        Use Code: <b>FOOD20</b>  
+        <br>Get <b>20% OFF</b> on orders above ₹299!
+    </div>
+
+    <div class="form-group">
+        <label>Your Experience</label>
+        <textarea rows="4" name="experience" placeholder="Share your experience…" required></textarea>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+</div>
+
+<script>
+    // ⭐ Rating system
+const stars = document.querySelectorAll("#ratingStars i");
+const ratingValue = document.getElementById("ratingValue");
+
+stars.forEach(star => {
+    star.addEventListener("click", () => {
+        stars.forEach(s => s.classList.remove("active"));
+        star.classList.add("active");
+        ratingValue.value = star.dataset.value; // store rating
+    });
+});
+
+// ⭐ Submit Feedback to Backend
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+        name: e.target.name.value,
+        rating: e.target.rating.value,
+        experience: e.target.experience.value
+    };
+
+    const res = await fetch("http://localhost:5006/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+    alert(data.message);
+});
+
+</script>
+  <footer>
+        <p>&copy; 2025 FoodieExpress. All rights reserved. | <a href="policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>

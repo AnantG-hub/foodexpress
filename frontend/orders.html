@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Orders</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<style>
+body { font-family: Arial; background:#f4f4f4; padding:20px }
+
+.order-box {
+  background:#fff;
+  border-radius:10px;
+  padding:15px;
+  margin-bottom:20px;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+.item {
+  display:flex;
+  gap:15px;
+  border-bottom:1px solid #ddd;
+  padding:10px 0;
+}
+
+.item img {
+  width:80px;
+  height:80px;
+  border-radius:8px;
+  object-fit:cover;
+}
+
+.btn {
+  padding:8px 15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.pay { background:#28a745; color:#fff }
+.cancel { background:#dc3545; color:#fff }
+</style>
+</head>
+
+<body>
+
+<h2>🧾 My Orders</h2>
+<div id="orders"></div>
+
+<script>
+// ===== Get logged-in user =====
+const user = JSON.parse(localStorage.getItem("user"));
+const box = document.getElementById("orders");
+
+if(!user) {
+    box.innerHTML = "<p>Please login to see your orders</p>";
+} else {
+    // ===== Load all orders for this user =====
+    axios.get(`http://localhost:5006/api/orders/user/${user.name}`)
+    .then(res => {
+        const orders = res.data;
+        if(orders.length === 0) {
+            box.innerHTML = "<p>No orders found</p>";
+            return;
+        }
+
+        let html = "";
+        orders.forEach(order => {
+            html += `<div class="order-box">
+                <h3>Order ID: ${order.orderId || "ORD-" + order._id.slice(-6)}</h3>
+                <p>Name: ${order.customerName}</p>
+                <p>Total: Rs.${order.total}</p>
+                <p>Status: <b id="status-${order._id}">${order.status || "Pending"}</b></p>
+                <p>Payment: ${order.paymentMethod || "COD"}</p>`;
+
+            order.items.forEach(i => {
+                html += `<div class="item">
+                    <img src="${i.img}">
+                    <div>
+                        <h4>${i.name}</h4>
+                        <p>Rs.${i.price} × ${i.quantity}</p>
+                    </div>
+                </div>`;
+            });
+
+            html += `
+                <button class="btn pay" onclick="goToPayment('${order._id}', '${order.orderId || "ORD-" + order._id.slice(-6)}', ${order.total})">Pay Now</button>
+                <button class="btn cancel" onclick="cancelOrder('${order._id}')">Cancel Order</button>
+            </div>`;
+        });
+
+        box.innerHTML = html;
+    })
+    .catch(err => console.error(err));
+}
+
+// ===== Go to payment page =====
+function goToPayment(_id, orderId, total) {
+    localStorage.setItem("currentPayment", JSON.stringify({
+        _id,        // backend ID for payment
+        orderId,    // display only
+        total
+    }));
+    window.location.href = "payment.html";
+}
+
+// ===== Cancel Order =====
+function cancelOrder(id) {
+    if(confirm("Cancel this order?")) {
+        axios.delete(`http://localhost:5006/api/orders/${id}`)
+        .then(() => {
+            alert("Order Cancelled ❌");
+            location.reload();
+        })
+        .catch(err => alert("Cancel failed"));
+    }
+}
+</script>
+
+</body>
+</html>

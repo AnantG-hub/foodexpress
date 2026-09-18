@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieExpress - Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Dark Mode Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">🍔 FoodieExpress</div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="orders.html">Order</a></li>
+                <li><a href="Feedback.html">Feedback</a></li>
+                <li><a href="login.html">Login/Register</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+                <li><a href="#" id="trackerBtn">🚚 Track Order</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to FoodieExpress</h1>
+            <p>Delicious food delivered to your doorstep in minutes!</p>
+            <a href="#menu" class="cta-btn">Explore Menu</a>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="🔍 Search food... (e.g., pizza, burger)">
+    </div>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="menu-category">
+            <h2>Main Courses</h2>
+            <div class="menu-items" id="menuItems">
+                <!-- Static items -->
+                <div class="menu-item" data-id="1" data-name="Laughing" data-price="50.00" data-img="../frontend/css/lough.jpg">
+                    <img src="../frontend/css/lough.jpg" alt="Laughing" loading="lazy">
+                    <div class="menu-item-content">
+                        <h3>Laphing</h3>
+                        <p> Tibetan flavors in every bite.</p>
+                        <span class="price">Rs.50.00</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-id="2" data-name="maggi" data-price="60.00" data-img="../frontend/css/maggi.jpg">
+                    <img src="../frontend/css/maggi.jpg" alt="maggi" loading="lazy">
+                    <div class="menu-item-content">
+                        <h3>Maggie</h3>
+                        <p>2-minute escape to flavor.</p>
+                        <span class="price">Rs.60.00</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                   <div class="menu-item" data-id="3" data-name="Pasta" data-price="60.00" data-img="../frontend/css/pasta.jpg">
+                <img src="../frontend/css/pasta.jpg" alt="Pasta" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Pasta</h3>
+                    <p>Fresh pasta with creamy sauce.</p>
+                    <span class="price">Rs.60.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="4" data-name="Spring Roll" data-price="50.00" data-img="../frontend/css/Spring-Rolls-6.jpg">
+                <img src="../frontend/css/Spring-Rolls-6.jpg" alt="Spring Roll" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Spring Roll</h3>
+                    <p>Crispy vegetable spring rolls.</p>
+                    <span class="price">Rs.50.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="5" data-name="Chicken Soup" data-price="80.00" data-img="../frontend/css/chicken-vegetable-soup-pot-square-crop-0526.jpg">
+                <img src="../frontend/css/chicken-vegetable-soup-pot-square-crop-0526.jpg" alt="Chicken Soup" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Chicken Soup</h3>
+                    <p>Warm and healthy chicken soup.</p>
+                    <span class="price">Rs.80.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="6" data-name="Chow Mein" data-price="75.00" data-img="../frontend/css/chow-mein-noodles-and-vegetables-dish-with-wooden-chopsticks.jpg">
+                <img src="../frontend/css/chow-mein-noodles-and-vegetables-dish-with-wooden-chopsticks.jpg" alt="Chow Mein" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Chow Mein</h3>
+                    <p>Stir-fried noodles with veggies.</p>
+                    <span class="price">Rs.75.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="7" data-name="Cheese Burger" data-price="55.00" data-img="../frontend/css/burger-with-melted-cheese-768x768.jpg">
+                <img src="../frontend/css/burger-with-melted-cheese-768x768.jpg" alt="Cheese Burger" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Cheese Burger</h3>
+                    <p>Delicious cheesy burger.</p>
+                    <span class="price">Rs.55.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="8" data-name="Seekh Kabab" data-price="65.00" data-img="../frontend/css/seekh-kabab-5.jpg">
+                <img src="../frontend/css/seekh-kabab-5.jpg" alt="Seekh Kabab" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Seekh Kabab</h3>
+                    <p>Spicy grilled kababs.</p>
+                    <span class="price">Rs.65.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="9" data-name="Cold Drink" data-price="40.00" data-img="../frontend/css/background-beverage-bottle-bubble-caffeine-carbonated-1435905-pxhere.com_-scaled.jpg">
+                <img src="../frontend/css/background-beverage-bottle-bubble-caffeine-carbonated-1435905-pxhere.com_-scaled.jpg" alt="Cold Drink" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Cold Drink</h3>
+                    <p>Chilled refreshing drink.</p>
+                    <span class="price">Rs.40.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="10" data-name="French Fries" data-price="90.00" data-img="../frontend/css/whisper-of-yum-homemade-french-fries.jpg">
+                <img src="../frontend/css/whisper-of-yum-homemade-french-fries.jpg" alt="French Fries" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>French Fries</h3>
+                    <p>Crispy golden fries.</p>
+                    <span class="price">Rs.90.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="11" data-name="Special Dish" data-price="70.00" data-img="../frontend/css/IMG-20241214-WA0001.jpg">
+                <img src="../frontend/css/IMG-20241214-WA0001.jpg" alt="Special Dish" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Special Dish</h3>
+                    <p>Delicious homemade recipe.</p>
+                    <span class="price">Rs.70.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="12" data-name="Patties" data-price="60.00" data-img="../frontend/css/Patties_vegetable_714cbc6f-37b6-4c94-919d-70936d7de2f3.jpg">
+                <img src="../frontend/css/Patties_vegetable_714cbc6f-37b6-4c94-919d-70936d7de2f3.jpg" alt="Patties" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Patties</h3>
+                    <p>Crispy vegetable patties.</p>
+                    <span class="price">Rs.60.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="13" data-name="Cuisine Pack" data-price="50.00" data-img="../frontend/css/Cuisine_(268)_44.jpg">
+                <img src="../frontend/css/Cuisine_(268)_44.jpg" alt="Cuisine Pack" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Cuisine Pack</h3>
+                    <p>Assorted cuisine meal.</p>
+                    <span class="price">Rs.50.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="14" data-name="Basmati Rice" data-price="45.00" data-img="../frontend/css/Perfect-Brown-Basmati-Rice_Done-1.jpg">
+                <img src="../frontend/css/Perfect-Brown-Basmati-Rice_Done-1.jpg" alt="Basmati Rice" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Basmati Rice</h3>
+                    <p>Perfect cooked rice.</p>
+                    <span class="price">Rs.45.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="15" data-name="Paneer Tikka" data-price="110.00" data-img="../frontend/css/Restaurant-Style-Recipe-Paneer-Tikka-500x500.jpg">
+                <img src="../frontend/css/Restaurant-Style-Recipe-Paneer-Tikka-500x500.jpg" alt="Paneer Tikka" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Paneer Tikka</h3>
+                    <p>Restaurant-style paneer tikka.</p>
+                    <span class="price">Rs.110.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="16" data-name="Macaroni" data-price="100.00" data-img="../frontend/css/Macaroni-Thumbnail-Blog.jpg">
+                <img src="../frontend/css/Macaroni-Thumbnail-Blog.jpg" alt="Macaroni" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Macaroni</h3>
+                    <p>Hot cheesy macaroni.</p>
+                    <span class="price">Rs.100.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-id="17" data-name="Fried Momos" data-price="95.00" data-img="../frontend/css/Fried-Momos.jpg">
+                <img src="../frontend/css/Fried-Momos.jpg" alt="Fried Momos" loading="lazy">
+                <div class="menu-item-content">
+                    <h3>Fried Momos</h3>
+                    <p>Hot crispy momos served with chutney.</p>
+                    <span class="price">Rs.95.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin: 30px 0;">
+    <button id="seeMoreBtn" class="cta-btn">See More 🍽️</button>
+</div>
+    </section>
+
+    <!-- Floating Cart Button (FAB) -->
+    <button id="cartToggle" class="cart-fab" aria-label="Open cart">🛒 <span class="cart-count">(0)</span></button>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <h2>My Cart</h2>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="total">Total: Rs.0.00</div>
+        <button id="checkoutBtn" class="checkout-btn">Checkout</button>
+    </div>
+
+    <!-- Order Success Popup -->
+    <div id="orderSuccess" class="order-success" role="alert">Order placed successfully! 🎉</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 FoodieExpress. All rights reserved. | <a href="contact.html">Contact Us</a>| <a href="Admin/admin_login.html">Admin-Login</a></p>
+    </footer>
+
+    <!-- Order Tracker -->
+    <div class="tracker-popup" id="orderTracker">
+        <h3>Order Tracking</h3>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="status-text" id="statusText">Order Not Started</div>
+        <button class="close-btn" id="closeTracker">Close</button>
+    </div>
+
+    <script>
+        // ===== Dark Mode =====
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+
+        // ===== Cart Logic =====
+        let cart = [];
+        const cartToggle = document.getElementById('cartToggle');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const totalDisplay = cartSidebar.querySelector('.total');
+
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+
+                const div = document.createElement('div');
+                div.classList.add('cart-item');
+                div.innerHTML = `
+                    <div class="item-info">
+                        <img src="${item.img}" class="cart-img">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>Rs.${item.price} x ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <div class="item-controls">
+                        <button onclick="decreaseQty(${index})">-</button>
+                        <button onclick="increaseQty(${index})">+</button>
+                        <button onclick="removeItem(${index})">x</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+
+            totalDisplay.textContent = 'Total: Rs.' + total.toFixed(2);
+            document.querySelector('.cart-count').textContent = `(${cart.reduce((a, i) => a + i.quantity, 0)})`;
+        }
+
+        function increaseQty(i) { cart[i].quantity++; updateCartDisplay(); }
+        function decreaseQty(i) { if (cart[i].quantity > 1) cart[i].quantity--; updateCartDisplay(); }
+        function removeItem(i) { cart.splice(i, 1); updateCartDisplay(); }
+
+        // ===== FETCH MENU ITEMS DYNAMICALLY =====
+        const menuContainer = document.getElementById("menuItems");
+        const staticHTML = menuContainer.innerHTML;
+
+        fetch("http://localhost:5006/api/food")
+            .then(res => res.json())
+            .then(foods => {
+                menuContainer.innerHTML = staticHTML; // Add static items back
+
+                foods.forEach(food => {
+                    menuContainer.innerHTML += `
+                        <div class="menu-item" data-id="${food._id}" data-name="${food.name}" data-price="${food.price}" data-img="http://localhost:5006/uploads/${food.image}">
+                            <img src="http://localhost:5006/uploads/${food.image}" alt="${food.name}" loading="lazy">
+                            <div class="menu-item-content">
+                                <h3>${food.name}</h3>
+                                <p>${food.description || ""}</p>
+                                <span class="price">Rs.${food.price}</span>
+                                <button class="add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // Reattach add-to-cart listeners
+                document.querySelectorAll('.add-to-cart').forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        const card = e.target.closest('.menu-item');
+                        const id = card.dataset.id;
+                        const name = card.dataset.name;
+                        const price = parseFloat(card.dataset.price);
+                        const img = card.dataset.img;
+
+                        const exist = cart.find(i => i.id == id);
+                        if (exist) exist.quantity++;
+                        else cart.push({ id, name, price, img, quantity: 1 });
+
+                        updateCartDisplay();
+                    });
+                });
+            });
+
+        cartToggle.addEventListener('click', () => {
+            cartSidebar.classList.toggle('active');
+        });
+
+        // ===== Search Bar =====
+        document.getElementById('searchBar').addEventListener('input', function () {
+            const text = this.value.toLowerCase();
+            document.querySelectorAll(".menu-item").forEach(item => {
+                const name = item.dataset.name.toLowerCase();
+                item.style.display = name.includes(text) ? "block" : "none";
+            });
+        });
+
+        // ===== Logout =====
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            if (confirm("Are you sure you want to logout?")) {
+                localStorage.removeItem("user");
+                localStorage.removeItem("token");
+                alert("Logged out successfully!");
+                window.location.href = "login.html";
+            }
+        });
+
+        // ===== Checkout =====
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            const user = JSON.parse(localStorage.getItem("user"));
+            if (!user) {
+                alert("Please login first!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            if (cart.length === 0) {
+                alert("Cart is empty!");
+                return;
+            }
+
+            const orderData = {
+                orderId: "ORD-" + Date.now(),
+                customerName: user.name,
+                customerId: user.email,
+                items: cart,
+                total: cart.reduce((a, i) => a + i.price * i.quantity, 0),
+                paymentMethod: "COD",
+                status: "Placed"
+            };
+
+            fetch("http://localhost:5006/api/orders", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
+                body: JSON.stringify(orderData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Order placed successfully! 🎉");
+                    let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+                    orders.push(data.order);
+                    localStorage.setItem("orders", JSON.stringify(orders));
+                    cart = [];
+                    updateCartDisplay();
+                    cartSidebar.classList.remove('active');
+                    window.location.href = "orders.html";
+                } else {
+                    alert("Failed: " + data.message);
+                }
+            })
+            .catch(err => console.error(err));
+        });
+
+        // ===== Order Tracker =====
+        const trackerBtn = document.getElementById("trackerBtn");
+        const popup = document.getElementById("orderTracker");
+        const closeBtn = document.getElementById("closeTracker");
+        const progressBar = document.getElementById("progressBar");
+        const statusText = document.getElementById("statusText");
+
+        trackerBtn.addEventListener("click", () => { popup.style.display = "block"; startTracking(); });
+        closeBtn.addEventListener("click", () => { popup.style.display = "none"; });
+
+        function startTracking() {
+            const stages = [
+                { width: 20, text: "Order Received" },
+                { width: 45, text: "Preparing Your Food" },
+                { width: 75, text: "On The Way" },
+                { width: 100, text: "Delivered ✔" }
+            ];
+            let i = 0;
+            progressBar.style.width = "0%";
+            const trackerInterval = setInterval(() => {
+                if (i < stages.length) {
+                    progressBar.style.width = stages[i].width + "%";
+                    statusText.textContent = stages[i].text;
+                    i++;
+                } else { clearInterval(trackerInterval); }
+            }, 1500);
+        }
+    </script>
+    <script>
+const MAX_VISIBLE = 9;
+const seeMoreBtn = document.getElementById("seeMoreBtn");
+
+function applyMenuLimit() {
+    const items = document.querySelectorAll(".menu-item");
+
+    items.forEach((item, index) => {
+        item.style.display = index < MAX_VISIBLE ? "block" : "none";
+    });
+
+    // Agar 9 se zyada items hain tabhi button dikhao
+    seeMoreBtn.style.display = items.length > MAX_VISIBLE ? "inline-block" : "none";
+}
+
+// Button click → show all
+seeMoreBtn.addEventListener("click", () => {
+    document.querySelectorAll(".menu-item").forEach(item => {
+        item.style.display = "block";
+    });
+    seeMoreBtn.style.display = "none";
+});
+
+// Jab dynamic foods load ho jaaye tab call karo
+setTimeout(applyMenuLimit, 500);
+</script>
+
+</body>
+</html>
